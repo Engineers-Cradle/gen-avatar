@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "crates/api",
+    "crates/gen-avatar"
+]
+resolver = "2"

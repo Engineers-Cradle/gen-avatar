@@ -1,0 +1,15 @@
+[package]
+name = "gen_avatar_lib"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "gen_avatar_lib"
+path = "src/lib.rs"
+
+[dependencies]
+failure = "0.1.2"
+image = "0.25.5"
+rusttype = "0.9.3"
+rand = "0.8.5"
+imageproc = "0.25.0"
