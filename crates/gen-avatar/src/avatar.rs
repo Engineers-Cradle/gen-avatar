@@ -225,8 +225,6 @@ impl AvatarBuilder {
             }
         }
 
-        
-
         // apply gaussian blur to the image if specified
         if let Some(b) = self.blur {
             imageops::blur(&image, b)
