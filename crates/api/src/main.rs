@@ -1,5 +1,5 @@
-mod libs;
 mod handler;
+mod libs;
 mod utils;
 
 use confik::{Configuration as _, EnvSource};
