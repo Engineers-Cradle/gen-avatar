@@ -1,18 +1,21 @@
-FROM rust:latest AS build
+FROM alpine:3.20.3
 
-# View app name in Cargo.toml
-ARG APP_NAME=api
+WORKDIR /app
 
-WORKDIR /build
+# Install base
+RUN apk add curl \
+    g++ gcc libc-dev \
+    make openssl-dev \
+    pkgconfig && \
+    rm -rf /var/cache/apk/*
+
+# Install rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 COPY . .
 
-RUN cargo build --locked --release
+RUN cargo build --release
 
-RUN cp ./target/release/$APP_NAME /bin/server
-
-FROM debian:bullseye-slim AS final
-
-COPY --from=build /bin/server /bin/
-
-CMD ["/bin/server"]
+CMD ["./target/release/api"]
